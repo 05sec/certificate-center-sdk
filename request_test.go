@@ -14,10 +14,17 @@ func TestGetLicense(t *testing.T) {
 		BaseURL: "http://localhost:7716",
 		ApiKey:  "123",
 	})
-	resp, err := clinet.GetLicense(&licenseV1.GetLicenseRequest{Code: "123"})
+	//resp, err := clinet.GetLicense(&licenseV1.GetLicenseRequest{Code: "123"})
+	//if err != nil {
+	//	t.Error(err)
+	//	return
+	//}
+	//log.Printf("resp: %v", resp)
+
+	resp2, err := clinet.ReadLicense(&licenseV1.ReadLicenseRequest{Code: "123"})
 	if err != nil {
 		t.Error(err)
 		return
 	}
-	log.Printf("resp: %v", resp)
+	log.Printf("resp: %v", resp2)
 }

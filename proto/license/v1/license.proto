@@ -10,8 +10,8 @@ message GetLicenseResponse {
 }
 
 message ReadLicenseRequest {
-  string id = 1;
-  string apiKey = 2;
+  string code = 1;
 }
 message ReadLicenseResponse {
+  string licenseInfo = 1;
 }
