@@ -1,4 +1,4 @@
-package certificate_center_sdk
+package client
 
 import (
 	"net/http"
@@ -10,6 +10,10 @@ type Client struct {
 }
 
 func NewClient(config *Config) *Client {
+	if config.BaseURL == "" {
+		config.BaseURL = "http://license-center.lwsec.cn"
+	}
+
 	return &Client{
 		httpClient: &http.Client{},
 		config:     config,

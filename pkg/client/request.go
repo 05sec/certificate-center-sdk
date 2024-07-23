@@ -1,4 +1,4 @@
-package certificate_center_sdk
+package client
 
 import (
 	"bytes"
