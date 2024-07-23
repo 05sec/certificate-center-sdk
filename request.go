@@ -2,9 +2,9 @@ package certificate_center_sdk
 
 import (
 	"bytes"
-	licenseV1 "certificate-center-sdk/pkg/proto/license/v1"
 	"encoding/json"
 	"fmt"
+	licenseV1 "github.com/05sec/certificate-center-sdk/pkg/proto/license/v1"
 	"io"
 	"log"
 	"net/http"

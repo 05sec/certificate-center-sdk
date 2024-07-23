@@ -1,4 +1,4 @@
-module certificate-center-sdk
+module github.com/05sec/certificate-center-sdk
 
 go 1.22.3
 

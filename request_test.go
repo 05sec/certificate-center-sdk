@@ -1,7 +1,7 @@
 package certificate_center_sdk
 
 import (
-	licenseV1 "certificate-center-sdk/pkg/proto/license/v1"
+	licenseV1 "github.com/05sec/certificate-center-sdk/pkg/proto/license/v1"
 	"log"
 	"testing"
 )
