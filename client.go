@@ -1,19 +1,17 @@
-package client
+package certificate_center_sdk
 
 import (
-	"certificate-center-sdk/config"
 	"net/http"
 )
 
-var Client *client
-
-type client struct {
+type Client struct {
 	httpClient *http.Client
-	config     *config.Config
+	config     *Config
 }
 
-func NewClient(config *config.Config) *client {
-	Client.httpClient = &http.Client{}
-	Client.config = config
-	return Client
+func NewClient(config *Config) *Client {
+	return &Client{
+		httpClient: &http.Client{},
+		config:     config,
+	}
 }

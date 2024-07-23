@@ -1,0 +1,17 @@
+syntax = "proto3";
+package license.v1;
+option go_package = "github.com/05sec/certificate-center-sdk/pkg/proto/go/license/v1;licenseV1";
+
+message GetLicenseRequest {
+  string code = 1;
+}
+message GetLicenseResponse {
+  string license = 1;
+}
+
+message ReadLicenseRequest {
+  string id = 1;
+  string apiKey = 2;
+}
+message ReadLicenseResponse {
+}
