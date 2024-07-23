@@ -1,4 +1,4 @@
-package decoder
+package license_decoder
 
 import (
 	"encoding/json"
