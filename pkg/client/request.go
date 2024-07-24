@@ -10,8 +10,12 @@ import (
 	"net/http"
 )
 
-func (c *Client) GetLicense(request *licenseV1.GetLicenseRequest) (*licenseV1.GetLicenseResponse, error) {
+func (c *Client) GetLicense(code string) (*licenseV1.GetLicenseResponse, error) {
 	url := c.config.BaseURL + "/gapi/product/v1/license/get"
+
+	request := &licenseV1.GetLicenseRequest{
+		Code: code,
+	}
 
 	data, err := json.Marshal(request)
 	if err != nil {
@@ -58,8 +62,12 @@ func (c *Client) GetLicense(request *licenseV1.GetLicenseRequest) (*licenseV1.Ge
 	}, nil
 }
 
-func (c *Client) ReadLicense(request *licenseV1.ReadLicenseRequest) (*licenseV1.ReadLicenseResponse, error) {
+func (c *Client) ReadLicense(code string) (*licenseV1.ReadLicenseResponse, error) {
 	url := c.config.BaseURL + "/gapi/product/v1/license/info"
+
+	request := &licenseV1.ReadLicenseRequest{
+		Code: code,
+	}
 
 	data, err := json.Marshal(request)
 	if err != nil {
