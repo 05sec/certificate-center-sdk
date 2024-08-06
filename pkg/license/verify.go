@@ -9,11 +9,11 @@ import (
 )
 
 // VerifyLicense verifies the license string.
-// AppID is the application ID.
+// AppID is the application ID. (e.g. "testApp")
 // licenseStr is the license string.
 // pubKeyStr is the public key string.
 // TODO: give client the pubKey
-func VerifyLicense(AppID, licenseStr string, pubKeyStr string) error {
+func VerifyLicense(AppID, licenseStr, pubKeyStr string) error {
 	machineID := GetMachineID(AppID)
 
 	info, err := Read(licenseStr, pubKeyStr)
@@ -21,13 +21,16 @@ func VerifyLicense(AppID, licenseStr string, pubKeyStr string) error {
 		return errors.New("failed to decode license")
 	}
 
-	if info.ExpiresAt.Before(time.Now()) || info.StartsAt.After(time.Now()) || info.MachineID != machineID {
+	if info.ExpiresAt.Before(time.Now()) ||
+		info.StartsAt.After(time.Now()) ||
+		info.MachineID != machineID {
 		return errors.New("invalid license")
 	}
 
 	return nil
 }
 
+// GetMachineID returns the machine ID.
 func GetMachineID(AppID string) string {
 	machineID, err := machineid.ProtectedID(AppID)
 	if err != nil {

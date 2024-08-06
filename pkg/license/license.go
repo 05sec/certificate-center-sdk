@@ -32,7 +32,7 @@ type signedKey struct {
 	EncodedInfo []byte         `json:"info"`
 }
 
-// const formatVersion = 1
+const formatVersion = 1
 
 func Read(encodedLicense string, pubKey string) (*Info, error) {
 	signedKeyData, err := base64.RawURLEncoding.DecodeString(encodedLicense)
