@@ -3,6 +3,7 @@ package license
 import (
 	"encoding/base64"
 	"encoding/json"
+	"fmt"
 	"time"
 
 	"github.com/pkg/errors"
@@ -31,7 +32,7 @@ type signedKey struct {
 	EncodedInfo []byte         `json:"info"`
 }
 
-const formatVersion = 1
+// const formatVersion = 1
 
 func Read(encodedLicense string, pubKey string) (*Info, error) {
 	signedKeyData, err := base64.RawURLEncoding.DecodeString(encodedLicense)
@@ -44,12 +45,17 @@ func Read(encodedLicense string, pubKey string) (*Info, error) {
 		return nil, errors.Wrap(err, "unmarshal signed license key")
 	}
 
-	sshSigner, err := ssh.ParsePrivateKey([]byte(pubKey))
+	parsedPubKey, _, _, _, err := ssh.ParseAuthorizedKey([]byte(pubKey))
 	if err != nil {
-		return nil, errors.Wrap(err, "parse private key")
+		return nil, fmt.Errorf("parse public key: %w", err)
 	}
 
-	if err := sshSigner.PublicKey().Verify(signedKey.EncodedInfo, signedKey.Signature); err != nil {
+	sshPubKey, ok := parsedPubKey.(ssh.PublicKey)
+	if !ok {
+		return nil, errors.New("invalid public key type")
+	}
+
+	if err := sshPubKey.Verify(signedKey.EncodedInfo, signedKey.Signature); err != nil {
 		return nil, errors.Wrap(err, "verify license key signature")
 	}
 

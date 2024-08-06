@@ -12,6 +12,7 @@ import (
 // AppID is the application ID.
 // licenseStr is the license string.
 // pubKeyStr is the public key string.
+// TODO: give client the pubKey
 func VerifyLicense(AppID, licenseStr string, pubKeyStr string) error {
 	machineID := GetMachineID(AppID)
 
