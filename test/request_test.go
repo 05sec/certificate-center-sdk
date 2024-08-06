@@ -1,7 +1,6 @@
 package test
 
 import (
-	licenseV1 "github.com/05sec/certificate-center-sdk/gen/proto/license/v1"
 	"github.com/05sec/certificate-center-sdk/pkg/client"
 	"github.com/05sec/certificate-center-sdk/pkg/license"
 	"log"
@@ -23,7 +22,7 @@ func TestGetLicense(t *testing.T) {
 	//}
 	//log.Printf("resp: %v", resp)
 
-	resp2, err := clinet.ReadLicense(&licenseV1.ReadLicenseRequest{Code: "123"})
+	resp2, err := clinet.ReadLicense("123")
 	if err != nil {
 		t.Error(err)
 		return
