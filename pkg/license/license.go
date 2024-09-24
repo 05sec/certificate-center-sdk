@@ -4,6 +4,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"github.com/zalando/go-keyring"
 	"time"
 
 	"github.com/pkg/errors"
@@ -65,4 +66,18 @@ func Read(encodedLicense string, pubKey string) (*Info, error) {
 	}
 
 	return &encodedInfo.Info, nil
+}
+
+// StoreLicense 将编码的许可证存储在密钥环中
+func StoreLicense(service, username, encodedLicense string) error {
+	return keyring.Set(service, username, encodedLicense)
+}
+
+// RetrieveLicense 从密钥环中检索编码的许可证
+func RetrieveLicense(service, username string) (string, error) {
+	encodedLicense, err := keyring.Get(service, username)
+	if err != nil {
+		return "", errors.Wrap(err, "retrieve license from keyring")
+	}
+	return encodedLicense, nil
 }
