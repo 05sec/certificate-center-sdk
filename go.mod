@@ -1,6 +1,6 @@
 module github.com/05sec/certificate-center-sdk
 
-go 1.22.3
+go 1.23
 
 require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.20.0
@@ -14,7 +14,10 @@ require (
 	github.com/Masterminds/goutils v1.1.1 // indirect
 	github.com/Masterminds/semver v1.5.0 // indirect
 	github.com/Masterminds/sprig v2.22.0+incompatible // indirect
+	github.com/alessio/shellescape v1.4.1 // indirect
 	github.com/asjdf/machineid v0.0.0-20240603070042-72dcf463ea22 // indirect
+	github.com/danieljoos/wincred v1.2.0 // indirect
+	github.com/godbus/dbus/v5 v5.1.0 // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/huandu/xstrings v1.4.0 // indirect
@@ -25,6 +28,7 @@ require (
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/sirupsen/logrus v1.9.3 // indirect
 	github.com/wuhan005/gadget v0.0.0-20221206194113-7619e407f1a0 // indirect
+	github.com/zalando/go-keyring v0.2.5 // indirect
 	golang.org/x/crypto v0.21.0 // indirect
 	golang.org/x/sys v0.20.0 // indirect
 	golang.org/x/text v0.15.0 // indirect

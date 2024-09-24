@@ -16,11 +16,12 @@ func TestGetLicense(t *testing.T) {
 		ApiKey:  "123",
 	})
 	//resp, err := clinet.GetLicense(&licenseV1.GetLicenseRequest{Code: "123"})
-	//if err != nil {
-	//	t.Error(err)
-	//	return
-	//}
-	//log.Printf("resp: %v", resp)
+	resp, err := clinet.GetLicense("123")
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	log.Printf("resp: %v", resp)
 
 	resp2, err := clinet.ReadLicense("123")
 	if err != nil {
