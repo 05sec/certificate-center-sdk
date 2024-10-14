@@ -20,6 +20,23 @@ type Info struct {
 	ExpiresAt time.Time `json:"e"`
 }
 
+func (info Info) Json() string {
+	b, _ := json.Marshal(info)
+	return string(b)
+}
+
+func (info Info) IsExpired() bool {
+	return info.ExpiresAt.Before(time.Now()) || info.StartsAt.After(time.Now())
+}
+
+func (info Info) CheckMachineID(AppID string) bool {
+	return info.MachineID == GetMachineID(AppID)
+}
+
+func (info Info) IsValid(AppID string) bool {
+	return !info.IsExpired() && info.CheckMachineID(AppID)
+}
+
 // Nonce is a random number used to generate different
 // signatures for the same license information
 type encodeInfo struct {
